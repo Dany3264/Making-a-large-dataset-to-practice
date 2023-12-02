@@ -1,0 +1,41 @@
+import pandas as pd
+import numpy as np
+import random
+from faker import Faker
+
+# Generating fake data using Faker library
+fake = Faker()
+
+# Create empty lists for each column
+column1 = [fake.name() for _ in range(50000)]
+column2 = [fake.address() for _ in range(50000)]
+column3 = [fake.date_of_birth(minimum_age=18, maximum_age=90).strftime('%Y-%m-%d') for _ in range(50000)]
+column4 = [random.choice(['Male', 'Female']) for _ in range(50000)]
+column5 = [fake.job() for _ in range(50000)]
+column6 = [fake.company() for _ in range(50000)]
+column7 = [fake.phone_number() for _ in range(50000)]
+column8 = [fake.email() for _ in range(50000)]
+column9 = [random.uniform(10000, 100000) for _ in range(50000)]
+column10 = [random.randint(1, 5) for _ in range(50000)]
+
+# Create a dictionary with column names and their respective lists
+data = {
+    'Name': column1,
+    'Address': column2,
+    'Date_of_Birth': column3,
+    'Gender': column4,
+    'Occupation': column5,
+    'Company': column6,
+    'Phone_Number': column7,
+    'Email': column8,
+    'Salary': column9,
+    'Rating': column10
+}
+
+# Create a DataFrame using Pandas
+df = pd.DataFrame(data)
+
+# Save the DataFrame to a CSV file
+df.to_csv('dataset_prueba.csv', index=False)
+
+
